@@ -5,6 +5,7 @@ using Zenject;
 
 namespace Utilities
 {
+    // TODO: Make it readonly struct
     public struct TimeManagerPauseChangedSignal
     {
         public bool IsPaused { get; set; }

@@ -1,5 +1,4 @@
-﻿using _Scripts.WizardsVGoblins.Battle.Cards;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Utilities
 {
