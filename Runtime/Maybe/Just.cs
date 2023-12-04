@@ -1,6 +1,6 @@
 using System;
 
-namespace Utilities.Maybe
+namespace Utilities
 {
     internal class Just<T> : IMaybe<T>
     {

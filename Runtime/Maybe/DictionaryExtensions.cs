@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Utilities.Maybe
+namespace Utilities
 {
     public static partial class DictionaryExtensions
     {

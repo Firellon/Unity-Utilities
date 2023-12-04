@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities.Maybe
+namespace Utilities
 {
     public static class Maybe
     {

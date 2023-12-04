@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Utilities.Maybe
+namespace Utilities
 {
     public static partial class EnumerableExtensions
     {
