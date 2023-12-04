@@ -28,5 +28,15 @@ namespace Utilities
         {
             return Mathf.Abs(positionA.x - positionB.x) == Mathf.Abs(positionA.y - positionB.y);
         }
+        
+        public static float ToDegrees(this Vector2 vector)
+        {
+            return Vector2.SignedAngle(vector, Vector2.up);
+        }
+
+        public static Quaternion ToTargetRotation(this Vector2 targetVector)
+        {
+            return ToTargetRotation((Vector3)targetVector);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Utilities
+namespace Utilities.Monads
 {
     public static class Maybe
     {

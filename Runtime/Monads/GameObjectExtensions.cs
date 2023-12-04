@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Utilities
+namespace Utilities.Monads
 {
     public static class GameObjectExtensions
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Utilities
+namespace Utilities.Monads
 {
-    public static partial class DictionaryExtensions
+    public static class DictionaryExtensions
     {
         public static IMaybe<TValue> GetValueOrEmpty<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key)
         {

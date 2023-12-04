@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Utilities
+namespace Utilities.Monads
 {
     public interface IMaybe<T>
     {

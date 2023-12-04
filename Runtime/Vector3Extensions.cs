@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Utilities
 {
@@ -25,11 +26,6 @@ namespace Utilities
         public static float ToAngle(this Vector2Int vector)
         {
             return Vector3.SignedAngle(vector.ToVector3(), Vector3.right, Vector3.up);
-        }
-
-        public static Vector3 ToCoordinate(this Vector3 vector)
-        {
-            return new Vector3(vector.x, 0, vector.z);
         }
 
         private const float DistanceEqualityThreshold = 0.1f;
@@ -62,6 +58,28 @@ namespace Utilities
         public static Vector2 ToVector2(this Vector3 vector)
         {
             return new Vector2(vector.x, vector.y);
+        }
+        
+        public static float ToDegrees(this Vector3 vector)
+        {
+            return Vector3.SignedAngle(vector, Vector3.forward, Vector3.up);
+        }
+
+        public static Vector3 Sum(this List<Vector3> vectorList)
+        {
+            var result = Vector3.zero;
+            foreach (var vector in vectorList)
+            {
+                result += vector;
+            }
+
+            return result;
+        }
+
+        public static Quaternion ToTargetRotation(this Vector3 targetVector)
+        {
+            var angle = Mathf.Atan2(targetVector.y, targetVector.x) * Mathf.Rad2Deg;
+            return Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 }

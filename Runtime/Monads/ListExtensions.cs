@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Utilities
+namespace Utilities.Monads
 {
-    public static partial class EnumerableExtensions
+    public static class EnumerableExtensions
     {
         public static IMaybe<T> FirstOrEmpty<T>(this IEnumerable<T> enumerable, Func<T, bool> predicate)
         {

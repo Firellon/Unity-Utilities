@@ -1,31 +1,37 @@
 using System;
 
-namespace Utilities
+namespace Utilities.Monads
 {
-    internal class Nothing<T> : IMaybe<T>
+    internal class Just<T> : IMaybe<T>
     {
-        public bool IsPresent => false;
-        public bool IsNotPresent => true;
+        private readonly T _value;
+
+        public Just(T value = default)
+        {
+            _value = value; 
+        }
+
+        public bool IsPresent => true;
+        public bool IsNotPresent => false;
         
         public T ValueOr(T defaultValue)
         {
-            return defaultValue;
+            return _value;
         }
         
         public T ValueOrDefault()
         {
-            return default;
+            return _value;
         }
 
         public IMaybe<T> IfPresent(Action<T> executor)
         {
+            executor(_value);
             return this;
         }
         
         public IMaybe<T> IfNotPresent(Action executor)
         {
-            executor();
-            
             return this;
         }
     }
