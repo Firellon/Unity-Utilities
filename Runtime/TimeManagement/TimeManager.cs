@@ -3,24 +3,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
-namespace Utilities
+namespace Utilities.TimeManagement
 {
-    // TODO: Make it readonly struct
-    public struct TimeManagerPauseChangedSignal
+    public class TimeManager : ITickable, IInitializable, IDisposable, ITimeManager
     {
-        public bool IsPaused { get; set; }
-    }
-
-    public class TimeManager : ITickable, IInitializable, IDisposable
-    {
-        public bool GameIsPaused;
         public bool Slowdown;
         public float slowdownFactor = 0.05f;
         private bool slowDownInProgress;
         public float slowdownLength = 2f;
         public float GameSpeed = 1;
 
-        public UnityEvent OnTick = new UnityEvent();
+        public UnityEvent OnTick { get; } = new();
 
         public void Initialize()
         {
@@ -38,20 +31,14 @@ namespace Utilities
 
         public void PauseGame()
         {
-            GameIsPaused = true;
             slowDownInProgress = false;
             Slowdown = false;
             Time.timeScale = 0;
-
-            // SignalsHub.DispatchAsync(new TimeManagerPauseChangedSignal { IsPaused = true });
         }
 
         public void RunGame()
         {
-            GameIsPaused = false;
             Time.timeScale = GameSpeed;
-
-            // SignalsHub.DispatchAsync(new TimeManagerPauseChangedSignal { IsPaused = false });
         }
 
         private void Reset()
@@ -82,5 +69,14 @@ namespace Utilities
         {
             Reset();
         }
+    }
+
+    public interface ITimeManager
+    {
+        UnityEvent OnTick { get; } 
+        
+        void RunGame();
+        void PauseGame();
+        void DoSlowdown();
     }
 }

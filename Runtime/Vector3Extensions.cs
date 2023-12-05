@@ -5,14 +5,6 @@ namespace Utilities
 {
     public static class Vector3Extensions
     {
-        public static Vector3 AngleToVector(this float angleInDegrees)
-        {
-            return new Vector3(
-                Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 
-                Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 
-                0);
-        }
-
         public static float ToAngle(this Vector3 vector)
         {
             return Vector3.SignedAngle(vector, Vector3.right, Vector3.up);

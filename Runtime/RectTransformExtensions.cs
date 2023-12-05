@@ -4,6 +4,13 @@ namespace Utilities
 {
     public static class RectTransformExtensions
     {
+        public static void SetAnchorX(this RectTransform rectTransform, Vector2 newAnchorX)
+        {
+            var anchorY = new Vector2(rectTransform.anchorMin.y, rectTransform.anchorMax.y);
+            rectTransform.anchorMin = new Vector2(newAnchorX.x, anchorY.x);
+            rectTransform.anchorMax = new Vector2(newAnchorX.y, anchorY.y);
+        }
+        
         public static void SetAnchorY(this RectTransform rectTransform, Vector2 newAnchorY)
         {
             var anchorX = new Vector2(rectTransform.anchorMin.x, rectTransform.anchorMax.x);
