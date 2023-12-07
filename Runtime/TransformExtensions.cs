@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Utilities.Prefabs;
 
 namespace Utilities
 {
@@ -29,6 +30,19 @@ namespace Utilities
             foreach (Transform childTransform in parentTransform)
             {
                 GameObject.DestroyImmediate(childTransform.gameObject);
+            }
+        }
+        
+        /// <summary>
+        /// Despawns all of the children of this Transform immediately
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <param name="prefabPool"></param>
+        public static void DespawnChildren(this Transform transform, IPrefabPool prefabPool)
+        {
+            for (var i = transform.childCount - 1; i >= 0; i--)
+            {
+                prefabPool.Despawn(transform.GetChild(i).gameObject);
             }
         }
         
