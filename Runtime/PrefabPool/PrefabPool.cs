@@ -11,6 +11,7 @@ namespace Utilities.Prefabs
         [Inject] private DiContainer container;
 
         [SerializeField] private Transform poolsTransform;
+        [SerializeField] private bool useDontDestroyOnLoad = true;
 
         public PrefabPool()
         {
@@ -22,7 +23,10 @@ namespace Utilities.Prefabs
         private void Awake()
         {
             transform.SetParent(null);
-            DontDestroyOnLoad(gameObject);
+
+            if (useDontDestroyOnLoad)
+                DontDestroyOnLoad(gameObject);
+
             cache = new Dictionary<int, IPrefabsGroup>();
         }
 
