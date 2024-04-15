@@ -51,5 +51,13 @@ namespace Utilities
             TValue value;
             return !dic.TryGetValue(key, out value) ? default(TValue) : value;
         }
+
+        public static TValue SafeGet<TKey, TValue>(this IDictionary<TKey, TValue> dic, TKey key, TValue defaultReturnValue)
+        {
+            if(dic == null)
+                return defaultReturnValue;
+            TValue value;
+            return !dic.TryGetValue(key, out value) ? defaultReturnValue : value;
+        }
     }
 }
