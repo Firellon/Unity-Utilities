@@ -6,7 +6,7 @@ namespace Utilities.Prefabs
 {
     public class PrefabPool : MonoBehaviour, IPrefabPool
     {
-        private Dictionary<int, IPrefabsGroup> cache;
+        private Dictionary<int, IPrefabsGroup> cache = new();
 
         [Inject] private DiContainer container;
 
@@ -26,8 +26,6 @@ namespace Utilities.Prefabs
 
             if (useDontDestroyOnLoad)
                 DontDestroyOnLoad(gameObject);
-
-            cache = new Dictionary<int, IPrefabsGroup>();
         }
 
         public GameObject Spawn(GameObject prefab, Transform parent = null)
