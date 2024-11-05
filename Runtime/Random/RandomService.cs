@@ -42,7 +42,7 @@ namespace Utilities.Random
             return random.Next(minValue, maxValue);
         }
 
-        public int Int(MinMax minMax)
+        public int Int(Utilities.RandomService.MinMax minMax)
         {
             return random.Next(minMax.Min, minMax.Max);
         }
