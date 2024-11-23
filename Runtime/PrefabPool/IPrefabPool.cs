@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zenject;
 
 namespace Utilities.Prefabs
 {
@@ -8,5 +9,8 @@ namespace Utilities.Prefabs
         GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation);
         GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null);
         void Despawn(GameObject instance);
+
+        GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, DiContainer diContainer, Transform parent = null);
+        void Despawn(GameObject instance, DiContainer diContainer);
     }
 }
