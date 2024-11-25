@@ -19,6 +19,15 @@ namespace Utilities.Prefabs
 
         public GameObject Spawn(GameObject prefab, Transform parent)
         {
+            var instance = DoSpawn(prefab, parent);
+
+            OnSpawned(instance);
+
+            return instance;
+        }
+
+        private GameObject DoSpawn(GameObject prefab, Transform parent)
+        {
             GameObject instance;
             if (pool.Count > 0)
             {
@@ -37,6 +46,14 @@ namespace Utilities.Prefabs
                 poolableItemComponent.PrefabKey = GetPrefabKey(prefab);
             }
 
+            return instance;
+        }
+
+        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
+        {
+            var instance = DoSpawn(prefab, parent);
+            instance.transform.SetPositionAndRotation(position, rotation);
+
             OnSpawned(instance);
 
             return instance;
@@ -46,7 +63,7 @@ namespace Utilities.Prefabs
         {
             if (!this)
                 return;
-            
+
             OnDespawn(instance);
             instance.transform.SetParent(transform);
             pool.Push(instance);

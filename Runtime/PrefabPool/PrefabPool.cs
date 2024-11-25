@@ -38,8 +38,7 @@ namespace Utilities.Prefabs
         public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation)
         {
             var resourceGroup = GetOrCreateGroup(prefab);
-            var instance = resourceGroup.Spawn(prefab, null);
-            instance.transform.SetPositionAndRotation(position, rotation);
+            var instance = resourceGroup.Spawn(prefab, position, rotation, null);
 
             return instance;
         }
@@ -47,8 +46,7 @@ namespace Utilities.Prefabs
         public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
         {
             var resourceGroup = GetOrCreateGroup(prefab);
-            var instance = resourceGroup.Spawn(prefab, parent);
-            instance.transform.SetPositionAndRotation(position, rotation);
+            var instance = resourceGroup.Spawn(prefab, position, rotation, parent);
 
             return instance;
         }
@@ -56,8 +54,7 @@ namespace Utilities.Prefabs
         public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, DiContainer diContainer, Transform parent = null)
         {
             var resourceGroup = GetOrCreateGroup(prefab, diContainer);
-            var instance = resourceGroup.Spawn(prefab, parent);
-            instance.transform.SetPositionAndRotation(position, rotation);
+            var instance = resourceGroup.Spawn(prefab, position, rotation, parent);
 
             return instance;
         }
