@@ -116,6 +116,7 @@ namespace Utilities.Prefabs
 
         private static void OnSpawned(GameObject instance)
         {
+            foreach (var resource in instance.GetComponentsInChildren<IPoolableResourceInitializer>()) resource.OnSpawnInitialize();
             instance.SetActive(true);
             foreach (var resource in instance.GetComponentsInChildren<IPoolableResource>()) resource.OnSpawn();
         }
