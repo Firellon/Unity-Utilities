@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -14,12 +15,14 @@ namespace Utilities.Prefabs
             set => isPersistantGroup = value;
         }
 
-        private readonly Stack<GameObject> pool = new Stack<GameObject>();
+        private readonly Stack<GameObject> pool = new();
         [Inject] private DiContainer container;
 
-        public GameObject Spawn(GameObject prefab, Transform parent)
+        public GameObject Spawn(GameObject prefab, Transform parent, Action<GameObject> onSpawn = null)
         {
             var instance = DoSpawn(prefab, parent);
+
+            onSpawn?.Invoke(instance);
 
             OnSpawned(instance);
 
@@ -49,10 +52,12 @@ namespace Utilities.Prefabs
             return instance;
         }
 
-        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent)
+        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent, Action<GameObject> onSpawn = null)
         {
             var instance = DoSpawn(prefab, parent);
             instance.transform.SetPositionAndRotation(position, rotation);
+
+            onSpawn?.Invoke(instance);
 
             OnSpawned(instance);
 

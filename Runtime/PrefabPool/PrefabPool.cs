@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -29,32 +30,24 @@ namespace Utilities.Prefabs
                 DontDestroyOnLoad(gameObject);
         }
 
-        public GameObject Spawn(GameObject prefab, Transform parent = null)
+        public GameObject Spawn(GameObject prefab, Transform parent = null, Action<GameObject> onSpawn = null)
         {
             var resourceGroup = GetOrCreateGroup(prefab);
-            return resourceGroup.Spawn(prefab, parent);
+            return resourceGroup.Spawn(prefab, parent, onSpawn);
         }
 
-        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation)
+        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null, Action<GameObject> onSpawn = null)
         {
             var resourceGroup = GetOrCreateGroup(prefab);
-            var instance = resourceGroup.Spawn(prefab, position, rotation, null);
+            var instance = resourceGroup.Spawn(prefab, position, rotation, parent, onSpawn);
 
             return instance;
         }
 
-        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, Transform parent = null)
-        {
-            var resourceGroup = GetOrCreateGroup(prefab);
-            var instance = resourceGroup.Spawn(prefab, position, rotation, parent);
-
-            return instance;
-        }
-
-        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, DiContainer diContainer, Transform parent = null)
+        public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation, DiContainer diContainer, Transform parent = null, Action<GameObject> onSpawn = null)
         {
             var resourceGroup = GetOrCreateGroup(prefab, diContainer);
-            var instance = resourceGroup.Spawn(prefab, position, rotation, parent);
+            var instance = resourceGroup.Spawn(prefab, position, rotation, parent, onSpawn);
 
             return instance;
         }
